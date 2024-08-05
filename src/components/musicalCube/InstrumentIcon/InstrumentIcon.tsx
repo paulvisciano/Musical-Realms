@@ -12,7 +12,7 @@ const InstumentIcon: React.FC<Props> = ({ sound, onClick }) => {
     const instrument: InstrumentName = getInstrumentFromSamplePath(sound);
 
     return (
-        <div className={`instrument-icon ${instrument}`} onClick={onClick} style={{ backgroundImage: `url("assets/icon/instruments/${instrument}.svg")` }} />)
+        <div className={`instrument-icon ${instrument}`} onClick={onClick} style={{ backgroundImage: `url("${process.env.PUBLIC_URL}/assets/icon/instruments/${instrument}.svg")` }} />)
 }
 
 export default InstumentIcon
