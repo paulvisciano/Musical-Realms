@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux'
 import store from "./store/store";
+
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -32,20 +33,22 @@ import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
 
-import MusicalCubesRealm from 'pages/realms/musicalCubes/MusicalCubesRealm';
-
 setupIonicReact();
-
-const basename = document.querySelector('base')?.getAttribute('href') ?? '/';
 
 const App: React.FC = () => (
   <Provider store={store}>
     <IonApp>
-      <IonReactRouter basename={basename}>
+      <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/cube" component={MusicalCubesRealm} />
-
-          <Redirect exact from="/" to="/cube" />
+          <Route path="/musical-realms/cube">
+            <Home />
+          </Route>
+          <Route exact path="/musical-realms">
+            <Redirect to="/musical-realms/cube" />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/musical-realms/cube" />
+          </Route>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
