@@ -27,19 +27,19 @@ import './theme/variables.css';
 import './theme/colors.css';
 import './theme/utility.css';
 
+
 setupIonicReact();
+
+const basename = document.querySelector('base')?.getAttribute('href') ?? '/';
 
 const App: React.FC = () => (
   <Provider store={store}>
     <IonApp>
-      <IonReactRouter basename={process.env.PUBLIC_URL}>
+      <IonReactRouter basename={basename}>
         <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+          <Route path="/cube" component={Home} />
+
+          <Redirect exact from="/" to="/cube" />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
