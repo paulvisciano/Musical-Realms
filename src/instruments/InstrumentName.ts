@@ -3,6 +3,7 @@ export enum InstrumentName {
     TibetanCrystalSingingBowl = "Tibetan Crystal Singing Bowl",
     Strings = 'strings',
     Violin = 'violin',
+    PianoChord = 'piano-chord',
     Piano = 'piano',
     Cello = 'cello',
     Drums = 'drums',
@@ -11,6 +12,8 @@ export enum InstrumentName {
     Keys = 'keys',
     Guitar = 'guitar',
     Vocal = 'vocal',
+    Bass = 'bass',
+    Percussion = 'percussion',
     Baseline = 'baseline',
     Unknown = 'unknown'
 }
