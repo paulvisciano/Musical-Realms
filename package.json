@@ -1,7 +1,7 @@
 {
   "name": "musical-realms",
   "version": "0.0.1",
-  "homepage": "https://paulvisciano.github.io/Musical-Realms",
+  "homepage": "https://paulvisciano.github.io/musical-realms",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
