@@ -14,7 +14,7 @@ const Home: React.FC = () => {
     </IonMenu>
     <IonPage id="main-content">
       <IonContent class="fullscreen-content" fullscreen={true}>
-        {/* <IonMenuButton className='main-menu-button' ></IonMenuButton> */}
+        <IonMenuButton className='main-menu-button' ></IonMenuButton>
         <Realms />
       </IonContent>
     </IonPage>
