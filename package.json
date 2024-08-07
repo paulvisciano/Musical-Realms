@@ -1,7 +1,7 @@
 {
-  "name": "musical-realms",
+  "name": "musical-cubes",
   "version": "0.0.1",
-  "homepage": "https://paulvisciano.github.io/musical-realms",
+  "homepage": "https://paulvisciano.github.io/musical-cubes",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -67,7 +67,7 @@
     "preserve": "PUBLIC_URL=/ npm run build",
     "serve": "serve -s build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --nojekyll",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "lint": "eslint --ext .ts,.tsx src",
     "discoverTracks": "node scripts/discoverTracks.js"

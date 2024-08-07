@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.musicalRealms',
-  appName: 'musical-realms',
+  appId: 'io.ionic.musicalCubes',
+  appName: 'musical-cubes',
   webDir: 'build',
   server: {
     androidScheme: 'https'
