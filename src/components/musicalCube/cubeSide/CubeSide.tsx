@@ -57,7 +57,10 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
                 wavesurferRef.current.seekTo(0);
                 wavesurferRef.current.play();
                 setIsPlaying(true);
+                return;
             }
+
+            setIsPlaying(false);
         });
 
         return () => {
