@@ -1,13 +1,13 @@
-.cube-side-toolbar { 
+.cube-side-toolbar {
     position: absolute;
-    top : 0;
-    right : -60px;
+    top: 0;
+    right: -55px;
     height: 100%;
 
-    ion-icon { 
-        color : var(--yellow-800);
-        height: 50px;
-        width: 50px;
+    ion-icon {
+        color: var(--yellow-800);
+        height: 40px;
+        width: 40px;
         margin-bottom: 4px;
     }
 }

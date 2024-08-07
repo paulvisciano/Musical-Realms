@@ -1,26 +1,16 @@
 import { IonGrid, IonIcon, IonRow } from "@ionic/react";
-import { reloadCircleSharp, reloadCircleOutline, syncCircle, pauseCircle, playCircle } from "ionicons/icons";
+
+import loopEnabledIcon from 'assets/icons/loop-enabled.svg';
+import loopDisabledIcon from 'assets/icons/loop-disabled.svg';
+
 import './Toolbar.css'
 
-interface ToolbarOptions {
-    isPlaying: boolean;
-    playPause: () => void;
-    loop: boolean;
-    setLoop: (val: boolean) => void;
-    triggerSync: () => void;
-    enableLoop: boolean;
-};
-
-const CubeSideToolbar: React.FC<ToolbarOptions> = ({ isPlaying, playPause, loop, setLoop, enableLoop }) => {
+const CubeSideToolbar: React.FC<{ enableLoop: boolean, loop: boolean, setLoop: (val: boolean) => void, }> = ({ enableLoop, loop, setLoop }) => {
     return (<div className="cube-side-toolbar">
         <IonGrid>
-            <IonRow>
-                {isPlaying ? <IonIcon size='large' icon={pauseCircle} onClick={() => playPause()} /> : <IonIcon size='large' icon={playCircle} onClick={() => playPause()} />}
-            </IonRow>
-
             {enableLoop &&
                 <IonRow>
-                    {loop ? <IonIcon size='large' icon={reloadCircleSharp} onClick={() => setLoop(false)} /> : <IonIcon size='large' icon={reloadCircleOutline} onClick={() => setLoop(true)} />}
+                    {loop ? <IonIcon className="loop-enabled" icon={loopEnabledIcon} onClick={() => setLoop(false)} /> : <IonIcon icon={loopDisabledIcon} onClick={() => setLoop(true)} />}
                 </IonRow>
             }
         </IonGrid>
