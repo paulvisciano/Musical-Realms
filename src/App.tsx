@@ -1,7 +1,7 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux'
 import store from "./store/store";
 
@@ -37,19 +37,11 @@ setupIonicReact();
 const App: React.FC = () => (
   <Provider store={store}>
     <IonApp>
-      <IonReactRouter>
+      <IonReactHashRouter>
         <IonRouterOutlet>
-          <Route path="/musical-realms/cube">
-            <MusicalCubesRealm />
-          </Route>
-          <Route exact path="/musical-realms">
-            <Redirect to="/musical-realms/cube" />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/musical-realms/cube" />
-          </Route>
+          <Route exact path="*" component={MusicalCubesRealm} />
         </IonRouterOutlet>
-      </IonReactRouter>
+      </IonReactHashRouter>
     </IonApp>
   </Provider>
 );
