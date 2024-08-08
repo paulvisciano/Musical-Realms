@@ -8,7 +8,5 @@ This projects aim to make Music Production accessible to everyone & Connect The 
 </h5>
 
 <p align="center">
- <img width="250" height="500" src="./img/demo.png">
-![Musical Cubes]()
-
+ <img width="300" height="600" src="./img/demo.png">
 </p>
