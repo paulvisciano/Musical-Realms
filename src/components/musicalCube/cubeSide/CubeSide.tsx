@@ -76,10 +76,10 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
     }
 
     const triggerSync = () => {
-        const sharedPosition = props.getSharedTrackTime();
+        const sharedTrackTime = props.getSharedTrackTime();
 
-        if (sharedPosition) {
-            wavesurferRef.current.setTime(sharedPosition);
+        if (sharedTrackTime) {
+            wavesurferRef.current.setTime(sharedTrackTime);
             wavesurferRef.current.play();
             setIsPlaying(true);
         }

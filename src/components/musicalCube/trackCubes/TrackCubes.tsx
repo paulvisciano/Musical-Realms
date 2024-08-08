@@ -1,14 +1,11 @@
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { Track } from "pages/realms/musicalCubes/tracks";
+
 import MusicalCube from "../musicalCube/MusicalCube";
+
 import "./TrackCubes.css";
-import { useEffect } from "react";
 
-interface TrackCubeProps {
-    track: Track;
-}
-
-const TrackCubes: React.FC<TrackCubeProps> = ({ track }) => {
+const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
     let sharedTrackTime = 0;
     let existingInterval: any = null;
 
