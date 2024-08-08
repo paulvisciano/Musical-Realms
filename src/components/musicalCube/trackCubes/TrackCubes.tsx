@@ -13,7 +13,6 @@ const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
         existingInterval = setInterval(() => {
             const newTrackTime = getCurrentTrackTime();
 
-            console.log("Track Time", newTrackTime);
             sharedTrackTime = newTrackTime;
 
             //This stops the interval when you switch tracks
