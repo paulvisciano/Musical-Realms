@@ -14,7 +14,7 @@ interface Options {
     sounds: string[];
     enableLoop?: boolean;
     enableSync?: boolean;
-    setSharedTrackTime: (newTrackTime: number) => void;
+    startGlobalTimeTracker: any;
     getSharedTrackTime: () => number;
 }
 
@@ -47,7 +47,7 @@ const MusicalCube: React.FC<Options> = ({ size = { height: 333, width: 333 }, so
                 modules={[EffectCube, Navigation]}
             >
                 {
-                    sounds.map((sound : any, index : any) =>
+                    sounds.map((sound: any, index: any) =>
                         <SwiperSlide key={`cube-slide-${index}`}>
                             <CubeSide id={nanoid()} sound={sound} size={size} {...props} />
                         </SwiperSlide>

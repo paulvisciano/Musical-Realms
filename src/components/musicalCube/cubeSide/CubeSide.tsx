@@ -17,7 +17,7 @@ interface SideOptions {
     sound?: any,
     enableLoop?: boolean;
     enableSync?: boolean;
-    setSharedTrackTime: any;
+    startGlobalTimeTracker: any;
     getSharedTrackTime: any;
 };
 
@@ -86,11 +86,7 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
         else {
             wavesurferRef.current.seekTo(0);
 
-            setInterval(() => {
-                const trackPosition = wavesurferRef.current.getCurrentTime();
-
-                props.setSharedTrackTime(trackPosition);
-            }, 10);
+            props.startGlobalTimeTracker(() => wavesurferRef.current.getCurrentTime());
 
             wavesurferRef.current.play();
 
