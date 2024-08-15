@@ -19,4 +19,8 @@
         width: 5px;
         background-color: var(--blue-900);
     }
+
+    .loading-spinner {
+        top: 45%;
+    }
 }

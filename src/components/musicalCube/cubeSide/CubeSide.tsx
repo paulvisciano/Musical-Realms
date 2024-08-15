@@ -1,4 +1,4 @@
-import { IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
+import { IonGrid, IonRow, IonCol, IonSpinner } from '@ionic/react';
 import React, {
     useCallback,
     useEffect,
@@ -120,34 +120,36 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, isActive, enableLoop
             <IonGrid>
                 <IonRow>
                     <IonCol>
-                        {loading && isActive && <CoinLoadingIndicator />}
+                        <div style={{ height: size.height, width: size.width }}>
+                            {loading && isActive && <IonSpinner className='loading-spinner' name={"lines-sharp-small"} duration={1800} />}
 
-                        <div className={`wavesurfer-custom-wrapper ${loading ? 'hide' : ''}`} onClick={() => onClick(isPlaying)}>
-                            {sound &&
-                                <WaveSurfer
-                                    height={size.height - 4}
-                                    width={size.width - 4}
-                                    barWidth={0.5}
-                                    interact={false}
-                                    //TODO: Get these colors from colors.css
-                                    //TODO : Pass them in as params
-                                    waveColor={[
-                                        "#1976d2",
-                                        "#2196f3",
-                                        "#1976d2",
-                                    ]}
-                                    progressColor={[
-                                        "#0d47a1",
-                                    ]}
-                                    dragToSeek={false}
-                                    onMount={handleWSMount}
-                                    container={`#${waveFormUniqueId}`}
-                                >
-                                    <WaveForm id={waveFormUniqueId} />
-                                </WaveSurfer>
-                            }
+                            <div className={`wavesurfer-custom-wrapper ${loading ? 'hide' : ''}`} onClick={() => onClick(isPlaying)}>
+                                {sound &&
+                                    <WaveSurfer
+                                        height={size.height - 4}
+                                        width={size.width - 4}
+                                        barWidth={0.5}
+                                        interact={false}
+                                        //TODO: Get these colors from colors.css
+                                        //TODO : Pass them in as params
+                                        waveColor={[
+                                            "#1976d2",
+                                            "#2196f3",
+                                            "#1976d2",
+                                        ]}
+                                        progressColor={[
+                                            "#0d47a1",
+                                        ]}
+                                        dragToSeek={false}
+                                        onMount={handleWSMount}
+                                        container={`#${waveFormUniqueId}`}
+                                    >
+                                        <WaveForm id={waveFormUniqueId} />
+                                    </WaveSurfer>
+                                }
 
-                            <InstumentIcon sound={sound} onClick={() => onClick(isPlaying)} />
+                                <InstumentIcon sound={sound} onClick={() => onClick(isPlaying)} />
+                            </div>
                         </div>
                     </IonCol>
                 </IonRow>
