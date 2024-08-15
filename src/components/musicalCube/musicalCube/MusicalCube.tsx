@@ -40,7 +40,7 @@ const MusicalCube: React.FC<Options> = ({ size = { height: 333, width: 333 }, so
                         swiper.update();
                     });
                 }}
-                onSlideChange={(swiper: SwiperType) => setCurrentSlideIndex(swiper.activeIndex)}
+                onSlideChange={(swiper: SwiperType) => setCurrentSlideIndex(swiper.realIndex)}
                 onSwiper={(swiper: SwiperType) => {
                     //Force update to remove dark background from slide
                     setTimeout(() => {
