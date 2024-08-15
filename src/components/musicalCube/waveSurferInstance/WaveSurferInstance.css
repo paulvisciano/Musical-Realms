@@ -1,0 +1,13 @@
+.wavesurfer-custom-wrapper {
+    opacity: 0.2;
+    transform: translateY(0) rotate(270deg);
+}
+
+::part(cursor) {
+    width: 5px;
+    background-color: var(--blue-900);
+}
+
+.loading-spinner {
+    top: 45%;
+}
