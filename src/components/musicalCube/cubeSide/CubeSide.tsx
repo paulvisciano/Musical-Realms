@@ -10,10 +10,12 @@ import CubeSideToolbar from '../toolbar/Toolbar';
 import "./CubeSide.css";
 import { Size } from '../interfaces/Size';
 import InstumentIcon from '../InstrumentIcon/InstrumentIcon';
+import { CoinLoadingIndicator } from 'components/cubeLoading/CoinLoadingIndicator';
 
 interface SideOptions {
     id: string;
     size: Size;
+    isActive: boolean;
     sound?: any,
     enableLoop?: boolean;
     enableSync?: boolean;
@@ -21,11 +23,12 @@ interface SideOptions {
     getSharedTrackTime: any;
 };
 
-export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, enableSync = true, sound, ...props }) => {
+export const CubeSide: React.FC<SideOptions> = ({ id, size, isActive, enableLoop = true, enableSync = true, sound, ...props }) => {
     //Each waveform needs to have a unique id
     const waveFormUniqueId = `waveform-${id}`;
     const wavesurferRef: any = useRef();
 
+    let [loading, setLoading] = useState(true);
     let [loop, setLoop] = useState(enableLoop);
     let [showToolbar, setShowToolbar] = useState(false);
     let [isPlaying, setIsPlaying] = useState(false);
@@ -50,6 +53,16 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
     }
 
     useEffect(() => {
+        if (!wavesurferRef || !wavesurferRef.current)
+            return;
+
+        const unsubReady = wavesurferRef.current.on("ready", () => {
+            setTimeout(() => {
+                setLoading(false)
+            }, 5000)
+        }
+        );
+
         const unsubClick = wavesurferRef.current.on("click", () => onClick(isPlaying));
 
         const unsubFinish = wavesurferRef.current.on("finish", () => {
@@ -66,8 +79,9 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
         return () => {
             unsubClick();
             unsubFinish();
+            unsubReady();
         };
-    }, [loop, isPlaying])
+    }, [loading, loop, isPlaying])
 
     const playPause = () => {
         wavesurferRef?.current?.playPause();
@@ -102,11 +116,13 @@ export const CubeSide: React.FC<SideOptions> = ({ id, size, enableLoop = true, e
     }
 
     return (
-        <div className={`cube-side`}>
+        <div className={`cube-side ${isActive ? 'active' : ''}`}>
             <IonGrid>
                 <IonRow>
                     <IonCol>
-                        <div className='wavesurfer-custom-wrapper' onClick={() => onClick(isPlaying)}>
+                        {loading && isActive && <CoinLoadingIndicator />}
+
+                        <div className={`wavesurfer-custom-wrapper ${loading ? 'hide' : ''}`} onClick={() => onClick(isPlaying)}>
                             {sound &&
                                 <WaveSurfer
                                     height={size.height - 4}
