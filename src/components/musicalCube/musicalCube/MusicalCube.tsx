@@ -29,7 +29,8 @@ interface Options {
 
 const MusicalCube: React.FC<Options> = ({ id, type, size = { height: 333, width: 333 }, sounds, ...props }) => {
     const dispatch = useDispatch();
-    let addVocalCube = (cube: SoundCube) => trackSlice.actions.addVocalCube({ vocalCube: cube });
+
+    let addVocalCube = (cube: SoundCube) => trackSlice.actions.addVocalsCube({ vocalCube: cube });
     let addMelodyCube = (cube: SoundCube) => trackSlice.actions.addMelodyCube({ vocalCube: cube });
     // let activeIndexChange = (index: number) => musicalCubeSlice.actions.activeIndexChange(index);
 

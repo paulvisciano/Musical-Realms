@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Track } from 'pages/realms/musicalCubes/tracks';
 
 export type SoundCube = {
     id: string;
@@ -10,19 +11,32 @@ type AddSoundCubePayload = {
     vocalCube: SoundCube;
 }
 
-type TrackState = {
+export type TrackState = {
+    name: string,
+    sounds: string[],
     vocalCubes: SoundCube[];
     melodyCubes: SoundCube[]
 }
 
+const initialState = {
+    name: "",
+    sounds: [],
+    vocalCubes: [],
+    melodyCubes: []
+} as TrackState;
+
 export const trackSlice = createSlice({
     name: 'track',
-    initialState: {
-        vocalCubes: [],
-        melodyCubes: []
-    } as TrackState,
+    initialState: initialState,
+
     reducers: {
-        addVocalCube: (state: TrackState, action: PayloadAction<AddSoundCubePayload>): TrackState =>
+        init: (state: TrackState, action: PayloadAction<Track>): TrackState =>
+        ({
+            ...state,
+            ...action.payload
+        }),
+        resetState: () => initialState,
+        addVocalsCube: (state: TrackState, action: PayloadAction<AddSoundCubePayload>): TrackState =>
         ({
             ...state,
             vocalCubes: state.vocalCubes.concat([action.payload.vocalCube])
@@ -35,6 +49,6 @@ export const trackSlice = createSlice({
     }
 });
 
-export const { addVocalCube } = trackSlice.actions;
+// export const { addVocalCube, addMelodyCube } = trackSlice.actions;
 
 export default trackSlice.reducer;

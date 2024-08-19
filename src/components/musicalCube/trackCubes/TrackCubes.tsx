@@ -21,6 +21,7 @@ const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
                 clearInterval(existingInterval)
         }, 100);
     };
+
     const getSharedTrackTime = () => sharedTrackTime;
 
     let oneShotSounds = track.sounds.filter((path: string) => path.indexOf('\/one_shots') != -1);
