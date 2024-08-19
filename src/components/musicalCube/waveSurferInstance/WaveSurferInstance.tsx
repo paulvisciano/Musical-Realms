@@ -36,15 +36,8 @@ const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, 
         if (!wavesurferRef || !wavesurferRef.current)
             return;
 
-        const unsubReady = wavesurferRef.current.on("ready", () => {
-            setTimeout(() => {
-                setLoading(false)
-            }, 5000)
-        }
-        );
-
+        const unsubReady = wavesurferRef.current.on("ready", () => setLoading(false));
         const unsubClick = wavesurferRef.current.on("click", () => onClick(isPlaying));
-
         const unsubFinish = wavesurferRef.current.on("finish", () => {
             if (loop) {
                 wavesurferRef.current.seekTo(0);

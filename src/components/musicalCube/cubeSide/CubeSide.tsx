@@ -6,11 +6,13 @@ import CubeSideToolbar from '../toolbar/Toolbar';
 import "./CubeSide.css";
 import { Size } from '../interfaces/Size';
 import WaveSurferInstance from '../waveSurferInstance/WaveSurferInstance';
+import { useSelector, useStore } from 'react-redux';
+import { AppState } from 'store/store';
 
 interface SideOptions {
     id: string;
+    index: number;
     size: Size;
-    isActive: boolean;
     sound: string,
     enableLoop?: boolean;
     enableSync?: boolean;
@@ -18,13 +20,15 @@ interface SideOptions {
     getSharedTrackTime: any;
 };
 
-export const CubeSide: React.FC<SideOptions> = ({ size, isActive, enableLoop = true, ...props }) => {
+export const CubeSide: React.FC<SideOptions> = ({ index, size, enableLoop = true, ...props }) => {
     let [loop, setLoop] = useState(enableLoop);
     let [loading, setLoading] = useState(true);
     let [showToolbar, setShowToolbar] = useState(false);
+    let activeIndex = 0;
+    let isActive = true;
 
     return (
-        <div className={`cube-side ${isActive ? 'active' : ''}`}>
+        <div className={`cube-side ${index === activeIndex ? 'active' : ''}`}>
             <IonGrid>
                 <IonRow>
                     <IonCol>

@@ -1,9 +1,10 @@
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { Track } from "pages/realms/musicalCubes/tracks";
 
-import MusicalCube from "../musicalCube/MusicalCube";
+import MusicalCube, { CubeType } from "../musicalCube/MusicalCube";
 
 import "./TrackCubes.css";
+import { nanoid } from "@reduxjs/toolkit";
 
 const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
     let sharedTrackTime = 0;
@@ -30,14 +31,14 @@ const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
             {oneShotSounds.length > 0 && (
                 <IonRow className="one-shot-cube-container">
                     <IonCol>
-                        <MusicalCube size={{ height: 200, width: 200 }} sounds={oneShotSounds} startGlobalTimeTracker={startGlobalTimeTracker} getSharedTrackTime={getSharedTrackTime} />
+                        <MusicalCube id={nanoid()} type={CubeType.Vocals} size={{ height: 200, width: 200 }} sounds={oneShotSounds} startGlobalTimeTracker={startGlobalTimeTracker} getSharedTrackTime={getSharedTrackTime} />
                     </IonCol>
                 </IonRow>)}
 
             {melodySounds.length > 0 && (
                 <IonRow className={`ion-align-items-center melody-cube-container ${oneShotSounds.length == 0 ? 'only-melody-cube' : ''}`}>
                     <IonCol>
-                        <MusicalCube size={{ height: 280, width: 280 }} sounds={melodySounds} startGlobalTimeTracker={startGlobalTimeTracker} getSharedTrackTime={getSharedTrackTime} />
+                        <MusicalCube id={nanoid()} type={CubeType.Melody} size={{ height: 280, width: 280 }} sounds={melodySounds} startGlobalTimeTracker={startGlobalTimeTracker} getSharedTrackTime={getSharedTrackTime} />
                     </IonCol>
                 </IonRow>
             )}

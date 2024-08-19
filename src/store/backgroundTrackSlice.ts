@@ -10,7 +10,7 @@ type BackgroundTrack = {
 }
 
 type StopPayload = {
-  soundKey : string;
+  soundKey: string;
 }
 
 export type BackgroundTrackState = {
@@ -65,5 +65,3 @@ export const backgroundTrackSlice = createSlice({
 });
 
 export const { addTrack, play, stop, changeVolume } = backgroundTrackSlice.actions;
-
-export default backgroundTrackSlice.reducer;
