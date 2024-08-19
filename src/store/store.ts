@@ -1,12 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import trackSlice from 'components/musicalCube/TrackSlice';
-
-const soundsData: any = {};
+import trackSlice, { TrackState } from 'components/musicalCube/TrackSlice';
 
 export type AppState = {
-  trackCubes: [];
+  track: TrackState;
 };
-
 
 export default configureStore({
   reducer: {
