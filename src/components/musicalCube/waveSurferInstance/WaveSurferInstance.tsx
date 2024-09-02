@@ -3,15 +3,19 @@ import { WaveSurfer, WaveForm } from "wavesurfer-react";
 import { Size } from "../interfaces/Size";
 
 import InstumentIcon from "../InstrumentIcon/InstrumentIcon";
+5
+import { useSelector } from "react-redux";
+import { AppState } from "store/store";
 
 import "./WaveSurferInstance.css";
 
-const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, sound: any, enableSync?: boolean, showInstrument: boolean, loop: boolean, setLoading: (val: boolean) => void, setShowToolbar: (val: boolean) => void, getSharedTrackTime: () => number, startGlobalTimeTracker: (getTrackTime: () => number) => void }> = ({ id, className, size, sound, enableSync, showInstrument, loop, setLoading, setShowToolbar, getSharedTrackTime, startGlobalTimeTracker }) => {
-    //Each waveform needs to have a unique id
+const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, sound: any, enableSync?: boolean, showInstrument: boolean, loop: boolean, setLoading: (val: boolean) => void, setShowToolbar: (val: boolean) => void, startGlobalTimeTracker: (getTrackTime: () => number) => void }> = ({ id, className, size, sound, enableSync = true, showInstrument, loop, setLoading, setShowToolbar, startGlobalTimeTracker }) => {
     const waveFormUniqueId = `waveform-${id}`;
     const wavesurferRef: any = useRef();
 
     let [isPlaying, setIsPlaying] = useState(false);
+
+    let sharedTrackTime = useSelector((state: AppState) => state.track.sharedTrackTime);
 
     const handleWSMount = useCallback(
         (waveSurfer: any) => {
@@ -24,12 +28,10 @@ const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, 
 
         if (!enableSync)
             playFromBeginning();
-        else if (playing) {
+        else if (playing)
             playPause();
-        }
-        else {
+        else
             triggerSync();
-        }
     }
 
     useEffect(() => {
@@ -63,22 +65,13 @@ const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, 
     }
 
     const triggerSync = () => {
-        const sharedTrackTime = getSharedTrackTime();
+        wavesurferRef.current.setTime(sharedTrackTime);
+        wavesurferRef.current.play();
 
-        if (sharedTrackTime) {
-            wavesurferRef.current.setTime(sharedTrackTime);
-            wavesurferRef.current.play();
-            setIsPlaying(true);
-        }
-        else {
-            wavesurferRef.current.seekTo(0);
-
+        if (sharedTrackTime === 0)
             startGlobalTimeTracker(() => wavesurferRef.current.getCurrentTime());
 
-            wavesurferRef.current.play();
-
-            setIsPlaying(true);
-        }
+        setIsPlaying(true);
     }
 
     const playFromBeginning = () => {

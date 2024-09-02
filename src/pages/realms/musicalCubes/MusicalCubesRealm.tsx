@@ -17,6 +17,10 @@ const MusicalCubesRealm = () => {
 
   const selectedTrack = useSelector((state: AppState) => state.track);
 
+  useEffect(() => {
+    dispatch(initializeTrack(tracks[0]))
+  }, []);
+
   return (
     <div className="musical-realm">
       <div className="track-cubes-container">

@@ -3,11 +3,11 @@ import React, {
     useState
 } from "react";
 import CubeSideToolbar from '../toolbar/Toolbar';
-import "./CubeSide.css";
-import { Size } from '../interfaces/Size';
 import WaveSurferInstance from '../waveSurferInstance/WaveSurferInstance';
-import { useSelector, useStore } from 'react-redux';
-import { AppState } from 'store/store';
+import useTraceUpdate from 'hooks/traceUpdate';
+import { Size } from '../interfaces/Size';
+
+import "./CubeSide.css";
 
 interface SideOptions {
     id: string;
@@ -17,15 +17,15 @@ interface SideOptions {
     enableLoop?: boolean;
     enableSync?: boolean;
     startGlobalTimeTracker: any;
-    getSharedTrackTime: any;
 };
 
 export const CubeSide: React.FC<SideOptions> = ({ index, size, enableLoop = true, ...props }) => {
+    let activeIndex = 0;
+    let isActive = true;
+
     let [loop, setLoop] = useState(enableLoop);
     let [loading, setLoading] = useState(true);
     let [showToolbar, setShowToolbar] = useState(false);
-    let activeIndex = 0;
-    let isActive = true;
 
     return (
         <div className={`cube-side ${index === activeIndex ? 'active' : ''}`}>

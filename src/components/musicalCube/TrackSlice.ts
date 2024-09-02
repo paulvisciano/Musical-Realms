@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Track } from 'pages/realms/musicalCubes/tracks';
+import { useDispatch } from 'react-redux';
 
 export type SoundCube = {
     id: string;
@@ -8,18 +9,26 @@ export type SoundCube = {
 };
 
 type AddSoundCubePayload = {
-    vocalCube: SoundCube;
+    cube: SoundCube;
 }
+
+type UpdateGlobalTimer = {
+    time: number;
+}
+
+let timer: any = null;
 
 export type TrackState = {
     name: string,
     sounds: string[],
+    sharedTrackTime: number,
     vocalCubes: SoundCube[];
     melodyCubes: SoundCube[]
 }
 
 const initialState = {
     name: "",
+    sharedTrackTime: 0,
     sounds: [],
     vocalCubes: [],
     melodyCubes: []
@@ -36,19 +45,21 @@ export const trackSlice = createSlice({
             ...action.payload
         }),
         resetState: () => initialState,
+        setSharedTrackTime: (state: TrackState, action: PayloadAction<UpdateGlobalTimer>): TrackState => ({
+            ...state,
+            sharedTrackTime: action.payload.time
+        }),
         addVocalsCube: (state: TrackState, action: PayloadAction<AddSoundCubePayload>): TrackState =>
         ({
             ...state,
-            vocalCubes: state.vocalCubes.concat([action.payload.vocalCube])
+            vocalCubes: state.vocalCubes.concat([action.payload.cube])
         }),
         addMelodyCube: (state: TrackState, action: PayloadAction<AddSoundCubePayload>): TrackState =>
         ({
             ...state,
-            melodyCubes: state.melodyCubes.concat([action.payload.vocalCube])
+            melodyCubes: state.melodyCubes.concat([action.payload.cube])
         })
     }
 });
-
-// export const { addVocalCube, addMelodyCube } = trackSlice.actions;
 
 export default trackSlice.reducer;

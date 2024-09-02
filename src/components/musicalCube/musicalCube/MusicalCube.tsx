@@ -1,15 +1,16 @@
-import './MusicalCube.css';
-import './SwiperOverrides.css';
+import React from "react";
+
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Swiper as SwiperType } from 'swiper/types';
 import { EffectCube, Navigation } from 'swiper/modules';
 
-import React, { useEffect, useState } from "react";
-import { nanoid } from '@reduxjs/toolkit';
 import { Size } from '../interfaces/Size';
 import { CubeSide } from '../cubeSide/CubeSide';
 import { useDispatch } from 'react-redux';
 import { SoundCube, trackSlice } from '../TrackSlice';
+
+import './MusicalCube.css';
+import './SwiperOverrides.css';
 
 export enum CubeType {
     Vocals,
@@ -24,14 +25,13 @@ interface Options {
     enableLoop?: boolean;
     enableSync?: boolean;
     startGlobalTimeTracker: any;
-    getSharedTrackTime: () => number;
 }
 
 const MusicalCube: React.FC<Options> = ({ id, type, size = { height: 333, width: 333 }, sounds, ...props }) => {
     const dispatch = useDispatch();
 
-    let addVocalCube = (cube: SoundCube) => trackSlice.actions.addVocalsCube({ vocalCube: cube });
-    let addMelodyCube = (cube: SoundCube) => trackSlice.actions.addMelodyCube({ vocalCube: cube });
+    let addVocalCube = (cube: SoundCube) => trackSlice.actions.addVocalsCube({ cube });
+    let addMelodyCube = (cube: SoundCube) => trackSlice.actions.addMelodyCube({ cube });
     // let activeIndexChange = (index: number) => musicalCubeSlice.actions.activeIndexChange(index);
 
     return (
@@ -47,19 +47,16 @@ const MusicalCube: React.FC<Options> = ({ id, type, size = { height: 333, width:
                     shadowOffset: 30,
                     shadowScale: 0.85,
                 }}
-                onAfterInit={(swiper: SwiperType) => {
-                    console.log('SWIPER', swiper);
-                }}
                 onInit={(swiper: SwiperType) => {
                     switch (type) {
                         case CubeType.Vocals:
-                            dispatch(addVocalCube({ id: id, activeIndex: 0, sounds: sounds }))
+                            dispatch(addVocalCube({ id, activeIndex: 0, sounds }))
                             break;
                         case CubeType.Melody:
-                            dispatch(addMelodyCube({ id: id, activeIndex: 0, sounds: sounds }))
+                            dispatch(addMelodyCube({ id, activeIndex: 0, sounds }))
                             break;
                         default:
-                            dispatch(addMelodyCube({ id: id, activeIndex: 0, sounds: sounds }))
+                            dispatch(addMelodyCube({ id, activeIndex: 0, sounds }))
                             break;
                     }
 
@@ -83,7 +80,7 @@ const MusicalCube: React.FC<Options> = ({ id, type, size = { height: 333, width:
                 {
                     sounds.map((sound: any, index: any) =>
                         <SwiperSlide key={`cube-slide-${index}`}>
-                            <CubeSide id={nanoid()} index={index} sound={sound} size={size} {...props} />
+                            <CubeSide id={`${id}-cube-side-${index}`} index={index} sound={sound} size={size} {...props} />
                         </SwiperSlide>
                     )}
 
