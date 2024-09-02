@@ -65,7 +65,11 @@ const WaveSurferInstance: React.FC<{ id: string, className: string, size: Size, 
     }
 
     const triggerSync = () => {
-        wavesurferRef.current.setTime(sharedTrackTime);
+        const trackDuration = wavesurferRef.current.getDuration();
+        //Calculate the seek to % based on the current track's duration
+        const seekToPercentage = sharedTrackTime / trackDuration;
+
+        wavesurferRef.current.seekTo(seekToPercentage);
         wavesurferRef.current.play();
 
         if (sharedTrackTime === 0)

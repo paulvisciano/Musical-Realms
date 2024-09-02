@@ -29,7 +29,7 @@ const TrackCubes: React.FC<{ track: Track }> = ({ track }) => {
             //This stops the interval when you switch tracks
             if (newTrackTime == 0)
                 clearInterval(existingInterval)
-        }, 1000);
+        }, 500);
     }, []);
 
     return (
