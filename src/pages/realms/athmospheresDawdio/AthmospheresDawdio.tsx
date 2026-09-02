@@ -9,16 +9,17 @@ import "./AthmospheresDawdio.css";
 import { AthmosphereVocals } from "./vocals/AthmosphereVocals";
 import { IonCol, IonGrid, IonLabel, IonRow } from "@ionic/react";
 
-import celloLowGm from "./instruments/Cello_Low_Gm.wav";
-import cello_Mid_High_Gm from "./instruments/Cello_Mid_High_Gm.wav";
-import cello_Full_Gm from "./instruments/Cello_Full_Gm.wav";
-import cello_Ensemble_Gm from "./instruments/Cello_Ensemble_Gm.wav";
+const R2_ATHM = "https://pub-7236cb2f994c4bdeba84ae4920d69b30.r2.dev/sounds/instruments/athmospheresDawdio";
+const celloLowGm = `${R2_ATHM}/Cello_Low_Gm.wav`;
+const cello_Mid_High_Gm = `${R2_ATHM}/Cello_Mid_High_Gm.wav`;
+const cello_Full_Gm = `${R2_ATHM}/Cello_Full_Gm.wav`;
+const cello_Ensemble_Gm = `${R2_ATHM}/Cello_Ensemble_Gm.wav`;
 
-import violinGm from "./instruments/Violin_Gmin.wav";
+const violinGm = `${R2_ATHM}/Violin_Gmin.wav`;
 
-import piano_Peace_Gm from "./instruments/Piano_Peace_Gm.wav";
-import piano_Uplifting_Gm from "./instruments/Piano_Uplifting_Gm.wav";
-import piano_Main_Gm from "./instruments/Piano_Main_Gm.wav";
+const piano_Peace_Gm = `${R2_ATHM}/Piano_Peace_Gm.wav`;
+const piano_Uplifting_Gm = `${R2_ATHM}/Piano_Uplifting_Gm.wav`;
+const piano_Main_Gm = `${R2_ATHM}/Piano_Main_Gm.wav`;
 
 const AthmospheresDawdioRealm: React.FC = () => {
 

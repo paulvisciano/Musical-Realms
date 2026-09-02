@@ -9,12 +9,13 @@ import "./SoulRealm.css";
 import { SoulVocals } from "./vocals/SoulVocals";
 import { IonCol, IonGrid, IonLabel, IonRow } from "@ionic/react";
 
-import flute from "./instruments/130_flute_Dmin.wav"
-import glockenSpiel from "./instruments/130_glockenspiel_Dmin.wav"
-import sax from "./instruments/130_sax_stabs_Dmin.wav"
-import cleanGuitar from "./instruments/130_guitar_clean.wav"
-import distortedGuitar from "./instruments/130_guitar_distorted_Dmin.wav"
-import leadGuitar from "./instruments/130_guitar_lead_Dmin.wav"
+const R2_SOUL = "https://pub-7236cb2f994c4bdeba84ae4920d69b30.r2.dev/sounds/instruments/soul";
+const flute = `${R2_SOUL}/130_flute_Dmin.wav`;
+const glockenSpiel = `${R2_SOUL}/130_glockenspiel_Dmin.wav`;
+const sax = `${R2_SOUL}/130_sax_stabs_Dmin.wav`;
+const cleanGuitar = `${R2_SOUL}/130_guitar_clean.wav`;
+const distortedGuitar = `${R2_SOUL}/130_guitar_distorted_Dmin.wav`;
+const leadGuitar = `${R2_SOUL}/130_guitar_lead_Dmin.wav`;
 
 const SoulRealm: React.FC = () => {
   let crownChakra = new Chakra(ChakraEnum.Crown);

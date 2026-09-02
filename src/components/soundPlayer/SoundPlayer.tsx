@@ -6,14 +6,15 @@ import { WaveSurfer, WaveForm } from "wavesurfer-react";
 import { ChakraEnum } from "components/Chakra";
 import "./SoundPlayer.css";
 
-import justADreamVocal from "../../assets/sounds/vocals/justADream.wav";
-import noTomorrowVocal from "../../assets/sounds/vocals/noTomorrow.wav";
-import childPlayVocal from "../../assets/sounds/vocals/childplay_Am.wav";
-import chillVocal from "../../assets/sounds/vocals/chill_F.wav";
-import iAmHereVocal from "../../assets/sounds/vocals/iAmHere.wav";
-import iKnowNothing from "../../assets/sounds/vocals/iKnowNothing.wav";
-import frenchDm from "../../assets/sounds/vocals/french_Dm.wav";
-import frenchEm from "../../assets/sounds/vocals/french_Em.wav";
+const R2_VOCALS = "https://pub-7236cb2f994c4bdeba84ae4920d69b30.r2.dev/sounds/vocals";
+const justADreamVocal = `${R2_VOCALS}/justADream.wav`;
+const noTomorrowVocal = `${R2_VOCALS}/noTomorrow.wav`;
+const childPlayVocal = `${R2_VOCALS}/childplay_Am.wav`;
+const chillVocal = `${R2_VOCALS}/chill_F.wav`;
+const iAmHereVocal = `${R2_VOCALS}/iAmHere.wav`;
+const iKnowNothing = `${R2_VOCALS}/iKnowNothing.wav`;
+const frenchDm = `${R2_VOCALS}/french_Dm.wav`;
+const frenchEm = `${R2_VOCALS}/french_Em.wav`;
 import { nanoid } from "@reduxjs/toolkit";
 import { IonCol, IonGrid, IonRow } from "@ionic/react";
 
@@ -24,16 +25,16 @@ type SoundPlayerProps = {
   iconPosition?: IconPosition
 }
 
-export enum AvailableVocals {
-  JustADream = justADreamVocal,
-  NoTomorrow = noTomorrowVocal,
-  ChildPlay = childPlayVocal,
-  Chill = chillVocal,
-  IAmHere = iAmHereVocal,
-  IKnowNothing = iKnowNothing,
-  FrenchDm = frenchDm,
-  FrenchEm = frenchEm,
-}
+export const AvailableVocals = {
+  JustADream: justADreamVocal,
+  NoTomorrow: noTomorrowVocal,
+  ChildPlay: childPlayVocal,
+  Chill: chillVocal,
+  IAmHere: iAmHereVocal,
+  IKnowNothing: iKnowNothing,
+  FrenchDm: frenchDm,
+  FrenchEm: frenchEm,
+} as const;
 
 export enum InstrumentIcons {
   Guitar = "guitar",

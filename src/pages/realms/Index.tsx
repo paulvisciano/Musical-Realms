@@ -13,7 +13,7 @@ import './Index.css';
 import TibetanRealm from './tibetan/Tibetan';
 import AthmospheresDawdioRealm from './athmospheresDawdio/AthmospheresDawdio';
 import SoulRealm from './soul/SoulRealm';
-import MusicalCubesRealm from './musicalCubes/MusicalCubesRealm';
+import NativeAmericanRealm from './nativeAmerican/NativeAmerican';
 
 const Realms: React.FC = () => {
   return (<>
@@ -36,10 +36,6 @@ const Realms: React.FC = () => {
     >
 
       <SwiperSlide>
-        <MusicalCubesRealm />
-      </SwiperSlide>
-      {/* 
-      <SwiperSlide>
         <SoulRealm />
       </SwiperSlide>
 
@@ -49,11 +45,11 @@ const Realms: React.FC = () => {
 
       <SwiperSlide>
         <AthmospheresDawdioRealm />
-      </SwiperSlide> */}
+      </SwiperSlide>
 
-      {/* <SwiperSlide>
+      <SwiperSlide>
         <NativeAmericanRealm />
-      </SwiperSlide> */}
+      </SwiperSlide>
 
 
       {/* <SwiperSlide>

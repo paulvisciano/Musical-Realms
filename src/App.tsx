@@ -30,7 +30,7 @@ import './theme/utility.css';
 import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
-import MusicalCubesRealm from 'pages/realms/musicalCubes/MusicalCubesRealm';
+import Realms from 'pages/realms/Index';
 
 setupIonicReact();
 
@@ -39,7 +39,7 @@ const App: React.FC = () => (
     <IonApp>
       <IonReactHashRouter>
         <IonRouterOutlet>
-          <Route exact path="*" component={MusicalCubesRealm} />
+          <Route exact path="*" component={Realms} />
         </IonRouterOutlet>
       </IonReactHashRouter>
     </IonApp>
