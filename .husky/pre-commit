@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run sync synchronization tests before commit
+echo "Running cube synchronization tests..."
+
+# Run unit tests
+npm run test:sync -- --watchAll=false --passWithNoTests
+
+# Run E2E tests (optional - comment out if too slow for pre-commit)
+# npm run test:e2e:sync
+
+echo "✓ Sync tests passed"
+
+
